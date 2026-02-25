@@ -196,15 +196,11 @@ def draw_dot(screen):
             pg.draw.circle(screen, DOT_COLOR, (curr_x, curr_y), 3)
 
 #ネッコ
-# --- 定数 ---
 MAX_BALLS = 90  # 画面内に存在できる最大数
 GRAVITY = 0.005
-
-# --- 画像の準備 ---
 all_rotated_caches = []
 
 for file in cats:
-
     cache = [pg.transform.rotate(file, a) for a in range(360)]
     all_rotated_caches.append(cache)
 
@@ -228,7 +224,6 @@ class Ball:
         self.x += self.vx
         self.y += self.vy
 
-        
         if self.y + 18 > SCREEN_H:
             self.y = SCREEN_H - 18
             if abs(self.vy) < 1.5: 
@@ -296,13 +291,13 @@ def select_difficulty(screen):
         title2.draw_text(screen,SCREEN_W//2 - title2.text_w//2,
                   120+title2.text_h)
         
-        for i, (name, _) in enumerate(levels):
+        for i, (name, _) in enumerate(levels): # ボタン
             if level_btn[i].collidepoint((mx, my)):
-                pg.draw.rect(screen,TEXT_COLOR, level_btn[i], border_radius=10) # ボタン
+                pg.draw.rect(screen,TEXT_COLOR, level_btn[i], border_radius=10)
                 lbl = Text(28, name, BG_COLOR , crayon_font)
                 lbl.draw_text(screen,SCREEN_W//2 - lbl.text_w//2, 290 + i * 70)
             else:
-                pg.draw.rect(screen, DOT_COLOR, level_btn[i], border_radius=10) # ボタン
+                pg.draw.rect(screen, DOT_COLOR, level_btn[i], border_radius=10)
                 lbl = Text(28, name, TEXT_COLOR, crayon_font)
                 lbl.draw_text(screen,SCREEN_W//2 - lbl.text_w//2, 290 + i * 70)
                 
@@ -420,7 +415,7 @@ def main():
             score_txt = Text(30, f"SCORE: {game.score}", TEXT_COLOR, title_font)
             score_txt.draw_text(screen, 10, 10)
             pg.display.update()
-            #clock.tick(60)
+            #clock.tick(60)　←いらぬっぽい
 
         # 結果画面
         board_surface.fill((255, 255, 255, 180)) 
@@ -438,3 +433,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
